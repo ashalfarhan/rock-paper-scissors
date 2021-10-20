@@ -1,14 +1,12 @@
 # Frontend Mentor - Rock, Paper, Scissors
 
-![Design preview for the Rock, Paper, Scissors coding challenge](./design/desktop-preview.jpg)
+![Design preview for the Rock, Paper, Scissors coding challenge](./src/assets/desktop-preview.jpg)
 
-## Welcome! 👋
+## Preview 🚀
 
-Thanks for checking out this front-end coding challenge.
+[Classic Game](https://ashal-rps.surge.sh)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
-
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+[Bonus Game](https://ashal-rps-bonus.surge.sh)
 
 ## The challenge
 
