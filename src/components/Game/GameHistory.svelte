@@ -4,7 +4,7 @@
   import { gameState, modalState } from '@app/store'
   import ResetConfirmation from '../Modals/ResetConfirmation.svelte'
   const handleReset = () => {
-    gameState.update((prev) => ({ ...prev, history: [], score: 0 }))
+    gameState.update((prev) => ({ ...prev, history: [] }))
     handleClose()
   }
   let confirmOpen = false

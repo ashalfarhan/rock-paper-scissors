@@ -5,6 +5,9 @@
   import { gameState } from '@app/store/game'
   import { gameOptions, gamepadImages } from '@app/libs/game'
   import { fade } from 'svelte/transition'
+  import { createEventDispatcher } from 'svelte'
+
+  const dispatch = createEventDispatcher<{ 'on-user-select': number }>()
 
   const handlePlay = () => {
     if (withAction) {
@@ -14,12 +17,13 @@
         userChoosen: padValue,
         isLoading: true,
       }))
+      dispatch('on-user-select', padValue)
     }
   }
 </script>
 
 {#if typeof padValue === 'number'}
-  <button in:fade on:click={handlePlay} class="game-button {gameOptions[padValue]} {!withAction && 'display-only'}">
+  <button in:fade on:click={handlePlay} class="game-button {gameOptions[padValue]} {!withAction ? 'display-only' : ''}">
     <div class="button-inner">
       <img src={gamepadImages[padValue]} alt="" />
     </div>

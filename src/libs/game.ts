@@ -3,10 +3,8 @@ import scissorsIcon from '@app/assets/images/icon-scissors.svg'
 import rockIcon from '@app/assets/images/icon-rock.svg'
 
 export const gamepadImages = [rockIcon, paperIcon, scissorsIcon]
+export const gameOptions = ['rock', 'paper', 'scissors']
 
-type Options = 'rock' | 'paper' | 'scissors'
-
-export const gameOptions: Options[] = ['rock', 'paper', 'scissors']
 export const parseResultText = {
   '-1': 'LOSE',
   '0': 'DRAW',
