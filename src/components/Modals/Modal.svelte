@@ -1,5 +1,4 @@
 <script lang="ts">
-  import closeIcon from '@app/assets/images/icon-close.svg'
   import { modalState } from '@app/store/modal'
   import { fade } from 'svelte/transition'
 
@@ -20,7 +19,14 @@
         <slot name="content">Content Goes here</slot>
       </div>
       <button class="modal-close-button" on:click={handleClose}>
-        <img src={closeIcon} alt="" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <path
+            fill="#3B4262"
+            fill-rule="evenodd"
+            d="M16.97 0l2.122 2.121-7.425 7.425 7.425 7.425-2.121 2.12-7.425-7.424-7.425 7.425L0 16.97l7.425-7.425L0 2.121 2.121 0l7.425 7.425L16.971 0z"
+            opacity=".25"
+          />
+        </svg>
       </button>
     </div>
   </div>
@@ -73,7 +79,6 @@
       flex: 1;
       justify-content: center;
       align-items: center;
-
     }
     .modal-body {
       margin-top: 4em;
