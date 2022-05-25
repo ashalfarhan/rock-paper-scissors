@@ -1,32 +1,44 @@
 <script lang="ts">
-  import { gameState, modalState } from '@app/store'
-  import GameConsole from '@app/components/Game/GameConsole/GameConsole.svelte'
-  import GameResult from '@app/components/Game/GameResult.svelte'
-  import Modal from '@app/components/Modals/Modal.svelte'
-  import Header from '@app/components/Header.svelte'
-  import GameHistory from '@app/components/Game/GameHistory.svelte'
-  import { sleep } from '@app/helper/sleep.helper'
-  import { determineResult } from '@app/libs/game'
-  import { nanoid } from 'nanoid'
+  import { gameState, modalState } from '@app/store';
+  import GameConsole from '@app/components/Game/GameConsole/GameConsole.svelte';
+  import GameResult from '@app/components/Game/GameResult.svelte';
+  import Modal from '@app/components/Modals/Modal.svelte';
+  import Header from '@app/components/Header.svelte';
+  import GameHistory from '@app/components/Game/GameHistory.svelte';
+  import { sleep } from '@app/helper/sleep.helper';
+  import { determineResult } from '@app/libs/game';
+  import { nanoid } from 'nanoid';
 
   const handleOpenRules = () => {
-    modalState.update((prev) => ({ ...prev, rulesOpen: true, historyOpen: false }))
-  }
+    modalState.update(prev => ({
+      ...prev,
+      rulesOpen: true,
+      historyOpen: false,
+    }));
+  };
 
   const onGameStart = async (e: CustomEvent<number>) => {
-    await sleep(800)
-    const rand = Math.floor(Math.random() * 3)
-    gameState.update((state) => {
-      const res = determineResult(e.detail, rand)
+    await sleep(800);
+    const rand = Math.floor(Math.random() * 3);
+    gameState.update(state => {
+      const res = determineResult(e.detail, rand);
       return {
         ...state,
         botChoosen: rand,
         result: res,
         isLoading: false,
-        history: [...state.history, { botChoosen: rand, userChoosen: e.detail, result: res, id: nanoid(4) }],
-      }
-    })
-  }
+        history: [
+          ...state.history,
+          {
+            botChoosen: rand,
+            userChoosen: e.detail,
+            result: res,
+            id: nanoid(4),
+          },
+        ],
+      };
+    });
+  };
 </script>
 
 <div class="container">
@@ -55,10 +67,28 @@
         </linearGradient>
       </defs>
       <g fill="none" fill-rule="evenodd">
-        <ellipse cx="53.189" cy="54.815" fill="#B1B4C5" rx="53.189" ry="54.815" />
-        <ellipse cx="53.189" cy="52.385" fill="url(#a)" rx="53.189" ry="52.385" />
+        <ellipse
+          cx="53.189"
+          cy="54.815"
+          fill="#B1B4C5"
+          rx="53.189"
+          ry="54.815"
+        />
+        <ellipse
+          cx="53.189"
+          cy="52.385"
+          fill="url(#a)"
+          rx="53.189"
+          ry="52.385"
+        />
         <g transform="translate(12.357 12.421)">
-          <ellipse cx="40.832" cy="41.044" fill="#E1E4ED" rx="40.832" ry="41.044" />
+          <ellipse
+            cx="40.832"
+            cy="41.044"
+            fill="#E1E4ED"
+            rx="40.832"
+            ry="41.044"
+          />
           <path
             fill="#8A90AC"
             fill-rule="nonzero"
@@ -66,10 +96,28 @@
           />
         </g>
         <g transform="translate(196)">
-          <ellipse cx="53.686" cy="54.815" fill="#B1B4C5" rx="53.686" ry="54.815" />
-          <ellipse cx="53.686" cy="52.385" fill="url(#b)" rx="53.686" ry="52.385" />
+          <ellipse
+            cx="53.686"
+            cy="54.815"
+            fill="#B1B4C5"
+            rx="53.686"
+            ry="54.815"
+          />
+          <ellipse
+            cx="53.686"
+            cy="52.385"
+            fill="url(#b)"
+            rx="53.686"
+            ry="52.385"
+          />
           <g transform="translate(12.473 12.421)">
-            <ellipse cx="41.214" cy="41.044" fill="#E1E4ED" rx="41.214" ry="41.044" />
+            <ellipse
+              cx="41.214"
+              cy="41.044"
+              fill="#E1E4ED"
+              rx="41.214"
+              ry="41.044"
+            />
             <path
               fill="#8A90AC"
               fill-rule="nonzero"
@@ -78,10 +126,28 @@
           </g>
         </g>
         <g transform="translate(98 160)">
-          <ellipse cx="53.686" cy="54.815" fill="#B1B4C5" rx="53.686" ry="54.815" />
-          <ellipse cx="53.686" cy="52.385" fill="url(#b)" rx="53.686" ry="52.385" />
+          <ellipse
+            cx="53.686"
+            cy="54.815"
+            fill="#B1B4C5"
+            rx="53.686"
+            ry="54.815"
+          />
+          <ellipse
+            cx="53.686"
+            cy="52.385"
+            fill="url(#b)"
+            rx="53.686"
+            ry="52.385"
+          />
           <g transform="translate(12.473 12.421)">
-            <ellipse cx="41.214" cy="41.044" fill="#E1E4ED" rx="41.214" ry="41.044" />
+            <ellipse
+              cx="41.214"
+              cy="41.044"
+              fill="#E1E4ED"
+              rx="41.214"
+              ry="41.044"
+            />
             <path
               fill="#8A90AC"
               fill-rule="nonzero"
@@ -175,10 +241,11 @@
     padding: 0.5em 2em;
     font-size: 20px;
     background: transparent;
+    width: fit-content;
     outline: 1px solid var(--main);
     border-radius: 9px;
     color: white;
-    position: absolute;
+    position: fixed;
     bottom: 2em;
     right: 2em;
   }
@@ -189,7 +256,9 @@
     }
     .rules-button {
       bottom: 0.8em;
-      transform: translate(-70%, -30%);
+      right: 50%;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 </style>

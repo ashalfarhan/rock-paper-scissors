@@ -1,22 +1,22 @@
-import { writable } from 'svelte/store'
-import { parseIfJsonString } from '@app/helper/JSON.helper'
+import { writable } from 'svelte/store';
+import { parseIfJsonString } from '@app/helper/JSON.helper';
 
-const LS_KEY_HISTORY = 'svelte_gawi_bawi_bo_history'
+const LS_KEY_HISTORY = 'svelte_gawi_bawi_bo_history';
 
 interface GameHistory {
-  userChoosen: number
-  botChoosen: number
-  result: number
-  id: string
+  userChoosen: number;
+  botChoosen: number;
+  result: number;
+  id: string;
 }
 
 interface GameState {
-  isPlaying: boolean
-  userChoosen: null | number
-  isLoading: boolean
-  botChoosen: null | number
-  result: number
-  history: GameHistory[]
+  isPlaying: boolean;
+  userChoosen: null | number;
+  isLoading: boolean;
+  botChoosen: null | number;
+  result: number;
+  history: GameHistory[];
 }
 
 export const gameState = writable<GameState>({
@@ -25,9 +25,12 @@ export const gameState = writable<GameState>({
   isLoading: false,
   botChoosen: null,
   result: 0,
-  history: (parseIfJsonString(localStorage.getItem(LS_KEY_HISTORY)) as unknown as GameHistory[]) || [],
-})
+  history:
+    (parseIfJsonString(
+      localStorage.getItem(LS_KEY_HISTORY)
+    ) as unknown as GameHistory[]) || [],
+});
 
 gameState.subscribe(({ history }) => {
-  localStorage.setItem(LS_KEY_HISTORY, JSON.stringify(history))
-})
+  localStorage.setItem(LS_KEY_HISTORY, JSON.stringify(history));
+});

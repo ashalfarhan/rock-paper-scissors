@@ -1,10 +1,17 @@
 <script lang="ts">
-  import { gameState, modalState } from '../store'
-  import imageLogo from '../assets/images/logo.svg'
+  import { gameState, modalState } from '../store';
+  import imageLogo from '../assets/images/logo.svg';
   const handleOpenHistory = () => {
-    modalState.update((prev) => ({ ...prev, historyOpen: true, rulesOpen: false }))
-  }
-  $: score = $gameState.history.length > 0 ? $gameState.history.reduce((acc, next) => acc + next.result, 0) : 0
+    modalState.update(prev => ({
+      ...prev,
+      historyOpen: true,
+      rulesOpen: false,
+    }));
+  };
+  $: score =
+    $gameState.history.length > 0
+      ? $gameState.history.reduce((acc, next) => acc + next.result, 0)
+      : 0;
 </script>
 
 <header>
