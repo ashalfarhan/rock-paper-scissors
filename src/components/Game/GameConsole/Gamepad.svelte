@@ -1,37 +1,23 @@
 <script lang="ts">
-  export let padValue = 0;
+  export let padValue: number | null = 0;
   export let withAction = false;
 
-  import { gameState } from '@app/store/game';
-  import { gameOptions, gamepadImages } from '@app/libs/game';
+  import { gameOptions, gamepadImages } from '$lib';
   import { fade } from 'svelte/transition';
   import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher<{ 'on-user-select': number }>();
-
-  const handlePlay = () => {
-    if (withAction) {
-      gameState.update(prev => ({
-        ...prev,
-        isPlaying: true,
-        userChoosen: padValue,
-        isLoading: true,
-      }));
-      dispatch('on-user-select', padValue);
-    }
-  };
+  const dispatch = createEventDispatcher<{ 'user-select': number }>();
 </script>
 
-{#if typeof padValue === 'number'}
+{#if padValue != null}
   <button
     in:fade
-    on:click={handlePlay}
-    class="game-button {gameOptions[padValue]} {!withAction
-      ? 'display-only'
-      : ''}"
+    on:click={() => dispatch('user-select', padValue ?? 0)}
+    class="game-button {gameOptions[padValue]} 
+    {!withAction ? 'display-only' : ''}"
   >
     <div class="button-inner">
-      <img src={gamepadImages[padValue]} alt="" />
+      <img width="50" height="50" src={gamepadImages[padValue]} alt="" />
     </div>
   </button>
 {:else}
@@ -52,10 +38,14 @@
     transition: box-shadow 200ms ease-in-out;
   }
 
+  .game-button,
+  .loading-pick {
+    width: var(--game-button-size);
+    height: var(--game-button-size);
+    border-radius: 50%;
+  }
+
   .game-button {
-    width: 160px;
-    height: 160px;
-    border-radius: 100%;
     display: flex;
     padding: 1.3em;
     transition: all 200ms ease;
@@ -94,21 +84,29 @@
   }
 
   .loading-pick {
-    width: 180px;
-    height: 180px;
     background-image: var(--bg);
-    border-radius: 100%;
+    border-radius: 50%;
   }
 
   @media screen and (max-width: 768px) {
-    .game-button {
-      width: 120px;
-      height: 120px;
-      padding: 1em;
-    }
+    .game-button,
     .loading-pick {
-      width: 120px;
-      height: 120px;
+      width: calc(var(--game-button-size) * 90 / 100);
+      height: calc(var(--game-button-size) * 90 / 100);
+    }
+    .game-button {
+      padding: 1.1em;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .game-button,
+    .loading-pick {
+      width: calc(var(--game-button-size) * 80 / 100);
+      height: calc(var(--game-button-size) * 80 / 100);
+    }
+    .game-button {
+      padding: 1em;
     }
   }
 </style>

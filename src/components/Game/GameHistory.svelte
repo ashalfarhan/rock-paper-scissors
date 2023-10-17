@@ -1,24 +1,16 @@
 <script lang="ts">
   import { flip } from 'svelte/animate';
-  import { gamepadImages, parseResultText } from '@app/libs/game';
-  import { gameState, modalState } from '@app/store';
-  import ResetConfirmation from '../Modals/ResetConfirmation.svelte';
+  import { gameOptions, gamepadImages, parseResultText } from '$lib';
+  import { ModalState, modalState, gameHistoryState } from '$lib/store';
+
   const handleReset = () => {
-    gameState.update(prev => ({ ...prev, history: [] }));
-    handleClose();
-  };
-  let confirmOpen = false;
-  const handleClose = () => {
-    modalState.update(prev => ({
-      ...prev,
-      historyOpen: false,
-      rulesOpen: false,
-    }));
+    gameHistoryState.set([]);
+    modalState.set(ModalState.NONE);
   };
 </script>
 
 <div class="game-history-wrapper">
-  {#if $gameState.history.length > 0}
+  {#if $gameHistoryState.length > 0}
     <div class="table-wrapper">
       <table>
         <thead>
@@ -29,14 +21,14 @@
           </tr>
         </thead>
         <tbody>
-          {#each $gameState.history as result (result.id)}
+          {#each $gameHistoryState as result (result.id)}
             <tr animate:flip>
               <td>
                 <img
                   width="24"
                   height="24"
                   src={gamepadImages[result.userChoosen]}
-                  alt=""
+                  alt={gameOptions[result.userChoosen]}
                 />
               </td>
               <td
@@ -50,7 +42,7 @@
                   width="24"
                   height="24"
                   src={gamepadImages[result.botChoosen]}
-                  alt=""
+                  alt={gameOptions[result.botChoosen]}
                 />
               </td>
             </tr>
@@ -58,52 +50,33 @@
         </tbody>
       </table>
     </div>
-    <ResetConfirmation
-      open={confirmOpen}
-      on:aggree={handleReset}
-      on:disagree={() => (confirmOpen = false)}
-    />
-    <button class="clear-button" on:click={() => (confirmOpen = true)}
-      >Clear</button
-    >
+    <button class="clear-button" on:click={handleReset}>Clear</button>
   {:else}
-    <p>You haven't played a game yet</p>
+    <p class="empty-history">You haven't played a game yet</p>
   {/if}
   <p class="banner">
     Want to try
-    <a href="https://ashal-rps-bonus.surge.sh">Bonus Game</a> ?
+    <a href="#bonus">Bonus Game</a> ?
   </p>
 </div>
 
 <style>
   .game-history-wrapper {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     row-gap: 1em;
-    position: relative;
+  }
+
+  .empty-history {
+    font-size: 18px;
+    text-align: center;
+    padding: 0 0 32px;
   }
 
   .table-wrapper {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 380px;
-  }
-
-  .table-wrapper::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  /* Track */
-  .table-wrapper::-webkit-scrollbar-track {
-    box-shadow: inset 0 2px 2px 2px var(--main);
-    border-radius: 10px;
-  }
-
-  /* Handle */
-  .table-wrapper::-webkit-scrollbar-thumb {
-    background-color: var(--text-main);
-    border-radius: 10px;
   }
 
   table {

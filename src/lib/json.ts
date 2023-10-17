@@ -1,18 +1,16 @@
 function isJsonString(val: any): val is string {
   try {
     if (typeof val === 'string') {
-      JSON.parse(<string>val);
+      JSON.parse(val);
       return true;
     }
-    return false;
-  } catch (error) {
-    return false;
-  }
+  } catch {}
+  return false;
 }
 
-export function parseIfJsonString<T>(val: T): T {
+export function parseIfJsonString<T>(val: string | null, _default?: T): T {
   if (isJsonString(val)) {
     return JSON.parse(val) as T;
   }
-  return val as T;
+  return _default as T;
 }

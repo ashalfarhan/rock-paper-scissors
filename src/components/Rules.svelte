@@ -24,7 +24,13 @@
       <ellipse cx="53.686" cy="54.815" fill="#B1B4C5" rx="53.686" ry="54.815" />
       <ellipse cx="53.686" cy="52.385" fill="url(#b)" rx="53.686" ry="52.385" />
       <g transform="translate(12.473 12.421)">
-        <ellipse cx="41.214" cy="41.044" fill="#E1E4ED" rx="41.214" ry="41.044" />
+        <ellipse
+          cx="41.214"
+          cy="41.044"
+          fill="#E1E4ED"
+          rx="41.214"
+          ry="41.044"
+        />
         <path
           fill="#8A90AC"
           fill-rule="nonzero"
@@ -36,7 +42,13 @@
       <ellipse cx="53.686" cy="54.815" fill="#B1B4C5" rx="53.686" ry="54.815" />
       <ellipse cx="53.686" cy="52.385" fill="url(#b)" rx="53.686" ry="52.385" />
       <g transform="translate(12.473 12.421)">
-        <ellipse cx="41.214" cy="41.044" fill="#E1E4ED" rx="41.214" ry="41.044" />
+        <ellipse
+          cx="41.214"
+          cy="41.044"
+          fill="#E1E4ED"
+          rx="41.214"
+          ry="41.044"
+        />
         <path
           fill="#8A90AC"
           fill-rule="nonzero"

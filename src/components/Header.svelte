@@ -1,21 +1,19 @@
 <script lang="ts">
-  import { gameState, modalState } from '../store';
-  import imageLogo from '../assets/images/logo.svg';
-  const handleOpenHistory = () => {
-    modalState.update(prev => ({
-      ...prev,
-      historyOpen: true,
-      rulesOpen: false,
-    }));
-  };
+  import { ModalState, gameHistoryState, modalState } from '$lib/store';
+  import imageLogo from '$lib/assets/images/logo.svg';
+
   $: score =
-    $gameState.history.length > 0
-      ? $gameState.history.reduce((acc, next) => acc + next.result, 0)
+    $gameHistoryState.length > 0
+      ? $gameHistoryState.reduce((acc, next) => acc + next.result, 0)
       : 0;
+
+  const handleOpenHistory = () => {
+    modalState.set(ModalState.HISTORY);
+  };
 </script>
 
 <header>
-  <img src={imageLogo} alt="" />
+  <img width="162" height="99" src={imageLogo} alt="Logo" />
   <button class="score-panel" on:click={handleOpenHistory}>
     <p>SCORE</p>
     <h1>{score}</h1>
@@ -30,8 +28,6 @@
     outline: 4px solid var(--header-outline);
     border-radius: 9px;
     padding: 1.5em;
-    margin: 0 4em;
-    position: relative;
   }
 
   .score-panel {
@@ -53,16 +49,19 @@
   .score-panel p {
     font-size: 18px;
   }
+
   @media screen and (max-width: 768px) {
     header {
       padding: 0.8em;
       margin: 0;
       z-index: 2;
     }
+
     header img {
       width: 120px;
       height: 70px;
     }
+
     .score-panel {
       padding: 1em 2em;
     }

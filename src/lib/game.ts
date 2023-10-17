@@ -1,25 +1,20 @@
-import paperIcon from '@app/assets/images/icon-paper.svg';
-import scissorsIcon from '@app/assets/images/icon-scissors.svg';
-import rockIcon from '@app/assets/images/icon-rock.svg';
+import paperIcon from '$lib/assets/images/icon-paper.svg';
+import scissorsIcon from '$lib/assets/images/icon-scissors.svg';
+import rockIcon from '$lib/assets/images/icon-rock.svg';
 
 export const gamepadImages = [rockIcon, paperIcon, scissorsIcon];
 export const gameOptions = ['rock', 'paper', 'scissors'];
 
-export const parseResultText = {
+export const parseResultText: { [key: number]: string } = {
   '-1': 'LOSE',
   '0': 'DRAW',
   '1': 'WIN',
 };
 
-export function determineResult(
-  userWeaponIdx: number,
-  botWeaponIdx: number
-): -1 | 0 | 1 {
+export function determineResult(userWeaponIdx: number, botWeaponIdx: number) {
   const userWeapon = gameOptions[userWeaponIdx];
   const botWeapon = gameOptions[botWeaponIdx];
-  if (!userWeapon || !botWeapon) {
-    return 0;
-  }
+  if (!userWeapon || !botWeapon) return 0;
   const pair = userWeapon.substring(0, 1) + botWeapon.substring(0, 1);
   switch (pair.toLowerCase()) {
     case 'rr':
@@ -35,6 +30,6 @@ export function determineResult(
     case 'ps':
       return -1;
     default:
-      return 0;
+      throw new Error('Unknown options');
   }
 }

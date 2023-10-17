@@ -1,16 +1,13 @@
 <script lang="ts">
-  import { modalState } from '@app/store/modal';
-  import { fade } from 'svelte/transition';
-
   export let title = 'Modal Title';
   export let open = false;
 
+  import { ModalState, modalState } from '$lib/store';
+  import { fade } from 'svelte/transition';
+  import IconClose from '../Icon/IconClose.svelte';
+
   const handleClose = () => {
-    modalState.update(prev => ({
-      ...prev,
-      historyOpen: false,
-      rulesOpen: false,
-    }));
+    modalState.set(ModalState.NONE);
   };
 </script>
 
@@ -23,14 +20,7 @@
         <slot name="content">Content Goes here</slot>
       </div>
       <button class="modal-close-button" on:click={handleClose}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-          <path
-            fill="#3B4262"
-            fill-rule="evenodd"
-            d="M16.97 0l2.122 2.121-7.425 7.425 7.425 7.425-2.121 2.12-7.425-7.424-7.425 7.425L0 16.97l7.425-7.425L0 2.121 2.121 0l7.425 7.425L16.971 0z"
-            opacity=".25"
-          />
-        </svg>
+        <IconClose />
       </button>
     </div>
   </div>
@@ -64,6 +54,8 @@
     display: flex;
     flex-direction: column;
     row-gap: 2em;
+    max-width: 360px;
+    width: 100%;
   }
 
   .modal-content h1 {
@@ -77,19 +69,20 @@
     right: 1.5em;
     background-color: transparent;
   }
+
   @media screen and (max-width: 480px) {
     .modal-content {
       height: 100vh;
       flex: 1;
       justify-content: center;
       align-items: center;
+      max-width: none;
+      border-radius: 0;
     }
-    .modal-body {
-      margin-top: 4em;
-    }
+
     .modal-close-button {
-      bottom: 0;
-      top: 90%;
+      bottom: 32px;
+      top: initial;
       right: 50%;
       transform: translate(60%, -50%);
     }
