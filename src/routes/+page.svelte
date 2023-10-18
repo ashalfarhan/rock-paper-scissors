@@ -97,7 +97,9 @@
   <GameHistory>
     <p class="banner">
       Want to try
-      <a href="/bonus">Bonus Game</a> ?
+      <a href="/bonus" on:click={() => modalState.set(ModalState.NONE)}>
+        Bonus Game
+      </a> ?
     </p>
   </GameHistory>
 </Modal>

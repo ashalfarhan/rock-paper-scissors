@@ -97,7 +97,9 @@
   <GameHistory>
     <p class="banner">
       Back to
-      <a href="/">Classic Game</a>
+      <a href="/" on:click={() => modalState.set(ModalState.NONE)}>
+        Classic Game
+      </a>
     </p>
   </GameHistory>
 </Modal>

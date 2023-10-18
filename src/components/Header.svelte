@@ -64,11 +64,6 @@
       z-index: 2;
     }
 
-    header img {
-      width: 120px;
-      height: 70px;
-    }
-
     .score-panel {
       padding: 1em 2em;
     }
