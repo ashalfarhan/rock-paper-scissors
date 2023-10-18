@@ -97,9 +97,7 @@
   <GameHistory>
     <p class="banner">
       Want to try
-      <a href="/bonus" on:click={() => modalState.set(ModalState.NONE)}>
-        Bonus Game
-      </a> ?
+      <a href="/bonus" data-sveltekit-reload>Bonus Game</a> ?
     </p>
   </GameHistory>
 </Modal>

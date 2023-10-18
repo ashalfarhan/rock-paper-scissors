@@ -97,9 +97,7 @@
   <GameHistory>
     <p class="banner">
       Back to
-      <a href="/" on:click={() => modalState.set(ModalState.NONE)}>
-        Classic Game
-      </a>
+      <a href="/" data-sveltekit-reload>Classic Game</a>
     </p>
   </GameHistory>
 </Modal>
