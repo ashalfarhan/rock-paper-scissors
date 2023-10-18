@@ -30,7 +30,7 @@
     userChoosen = e.detail;
     gamePlayState = GamePlayState.PLAYING;
     await new Promise(resolve => setTimeout(resolve, 800));
-    botChoosen = Math.floor(Math.random() * 3);
+    botChoosen = Math.floor(Math.random() * 5);
     const result = determineResult(userChoosen, botChoosen);
     resultText = parseResultText[result];
     gameHistoryState.update(prev => [

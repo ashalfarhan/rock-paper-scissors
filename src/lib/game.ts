@@ -23,21 +23,40 @@ export function determineResult(userWeaponIdx: number, botWeaponIdx: number) {
   const userWeapon = gameOptions[userWeaponIdx];
   const botWeapon = gameOptions[botWeaponIdx];
   if (!userWeapon || !botWeapon) return 0;
-  const pair = userWeapon.substring(0, 1) + botWeapon.substring(0, 1);
+  const pair = userWeapon.substring(0, 2) + botWeapon.substring(0, 2);
   switch (pair.toLowerCase()) {
-    case 'rr':
-    case 'pp':
-    case 'ss':
+    case 'roro':
+    case 'papa':
+    case 'scsc':
+    // Bonus
+    case 'spsp':
+    case 'lili':
       return 0;
-    case 'pr':
-    case 'rs':
-    case 'sp':
+    case 'paro':
+    case 'pasp':
+    case 'rosc':
+    case 'roli':
+    case 'scpa':
+    case 'scli':
+    // Bonus
+    case 'lisp':
+    case 'lipa':
+    case 'spsc':
+    case 'spro':
       return 1;
-    case 'rp':
-    case 'sr':
-    case 'ps':
+    case 'ropa':
+    case 'rosp':
+    case 'scro':
+    case 'scsp':
+    case 'pasc':
+    case 'pali':
+    // Bonus
+    case 'liro':
+    case 'lisc':
+    case 'spli':
+    case 'sppa':
       return -1;
     default:
-      throw new Error('Unknown options');
+      throw new Error('Unknown options: ' + pair);
   }
 }
