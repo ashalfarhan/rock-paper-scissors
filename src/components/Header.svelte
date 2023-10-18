@@ -1,7 +1,10 @@
 <script lang="ts">
+  export let gameMode: string;
+
   import { ModalState, gameHistoryState, modalState } from '$lib/store';
   import imageLogo from '$lib/assets/images/logo.svg';
-
+  import imageLogoBonus from '$lib/assets/images/logo-bonus.svg';
+  
   $: score =
     $gameHistoryState.length > 0
       ? $gameHistoryState.reduce((acc, next) => acc + next.result, 0)
@@ -13,7 +16,11 @@
 </script>
 
 <header>
-  <img width="162" height="99" src={imageLogo} alt="Logo" />
+  {#if gameMode === 'basic'}
+    <img width="162" height="99" src={imageLogo} alt="Logo" />
+  {:else}
+    <img width="115" height="114" src={imageLogoBonus} alt="Logo" />
+  {/if}
   <button class="score-panel" on:click={handleOpenHistory}>
     <p>SCORE</p>
     <h1>{score}</h1>

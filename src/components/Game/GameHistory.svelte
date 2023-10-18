@@ -4,8 +4,8 @@
   import { ModalState, modalState, gameHistoryState } from '$lib/store';
 
   const handleReset = () => {
-    gameHistoryState.set([]);
     modalState.set(ModalState.NONE);
+    gameHistoryState.set([]);
   };
 </script>
 
@@ -54,10 +54,7 @@
   {:else}
     <p class="empty-history">You haven't played a game yet</p>
   {/if}
-  <p class="banner">
-    Want to try
-    <a href="#bonus">Bonus Game</a> ?
-  </p>
+  <slot>Please insert banner</slot>
 </div>
 
 <style>
@@ -122,22 +119,6 @@
 
   .clear-button:hover {
     filter: opacity(0.8);
-  }
-
-  .banner {
-    font-size: 12px;
-    color: var(--text-main);
-  }
-
-  .banner a {
-    color: var(--text-main);
-    text-decoration: none;
-    background: var(--rock-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: cover;
-    font-weight: bold;
   }
 
   @media screen and (max-width: 480px) {

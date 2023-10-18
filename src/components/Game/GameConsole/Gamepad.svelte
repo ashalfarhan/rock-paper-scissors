@@ -66,6 +66,16 @@
     box-shadow: 0 0.5rem 0 hsl(349, 71%, 45%);
   }
 
+  .game-button.lizard {
+    background-image: var(--lizard-gradient);
+    box-shadow: 0 0.5rem 0 hsl(261, 73%, 56%);
+  }
+
+  .game-button.spock {
+    background-image: var(--cyan);
+    box-shadow: 0 0.5rem 0 hsl(189, 59%, 40%);
+  }
+
   .game-button:active {
     box-shadow: 0 0 0;
     transform: translateY(0.4rem);
@@ -77,10 +87,6 @@
 
   .button-inner {
     box-shadow: inset 0 -2px 0 2px rgba(0, 0, 0, 0.3);
-  }
-
-  .game-button.display-only .button-inner {
-    box-shadow: inset 0 3px 0 3px rgba(0, 0, 0, 0.3);
   }
 
   .loading-pick {

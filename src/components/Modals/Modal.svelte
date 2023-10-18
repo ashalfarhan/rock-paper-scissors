@@ -17,7 +17,7 @@
     <div class="modal-content">
       <h1>{title}</h1>
       <div class="modal-body">
-        <slot name="content">Content Goes here</slot>
+        <slot>Content Goes here</slot>
       </div>
       <button class="modal-close-button" on:click={handleClose}>
         <IconClose />
@@ -54,8 +54,6 @@
     display: flex;
     flex-direction: column;
     row-gap: 2em;
-    max-width: 360px;
-    width: 100%;
   }
 
   .modal-content h1 {
@@ -76,7 +74,6 @@
       flex: 1;
       justify-content: center;
       align-items: center;
-      max-width: none;
       border-radius: 0;
     }
 

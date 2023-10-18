@@ -71,7 +71,7 @@
 
 <div class="wrapper">
   <div class="container">
-    <Header />
+    <Header gameMode="basic" />
   </div>
   <div class="game-container container">
     {#if gamePlayState !== GamePlayState.IDLE}
@@ -90,15 +90,16 @@
 </div>
 
 <Modal open={$modalState === ModalState.RULES} title="Rules">
-  <div slot="content">
-    <Rules />
-  </div>
+  <Rules />
 </Modal>
 
 <Modal open={$modalState === ModalState.HISTORY} title="History">
-  <div slot="content">
-    <GameHistory />
-  </div>
+  <GameHistory>
+    <p class="banner">
+      Want to try
+      <a href="/bonus">Bonus Game</a> ?
+    </p>
+  </GameHistory>
 </Modal>
 
 <style>

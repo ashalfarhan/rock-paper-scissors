@@ -1,9 +1,17 @@
 import paperIcon from '$lib/assets/images/icon-paper.svg';
 import scissorsIcon from '$lib/assets/images/icon-scissors.svg';
 import rockIcon from '$lib/assets/images/icon-rock.svg';
+import spockIcon from '$lib/assets/images/icon-spock.svg';
+import lizardIcon from '$lib/assets/images/icon-lizard.svg';
 
-export const gamepadImages = [rockIcon, paperIcon, scissorsIcon];
-export const gameOptions = ['rock', 'paper', 'scissors'];
+export const gamepadImages = [
+  rockIcon,
+  paperIcon,
+  scissorsIcon,
+  spockIcon,
+  lizardIcon,
+];
+export const gameOptions = ['rock', 'paper', 'scissors', 'spock', 'lizard'];
 
 export const parseResultText: { [key: number]: string } = {
   '-1': 'LOSE',
