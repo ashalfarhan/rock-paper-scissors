@@ -1,38 +1,38 @@
-# create-svelte
+# Rock Paper Scissors
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A simple web-based game.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- [SvelteKit](https://kit.svelte.dev)
+
+## Run Locally
+
+Clone the project
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+git clone https://github.com/ashalfarhan/rock-paper-scissors.git
 ```
 
-## Developing
+Go to the project directory
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+cd rock-paper-scissors
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the server
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Acknowledgements
 
-To create a production version of your app:
+- [Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH)
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
