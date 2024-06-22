@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+env:
+  CACHE_VERSION: v1
+
+jobs:
+  build:
+    name: Static code analyzer, Test, and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Restore cache 🔍
+        uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: node_modules
+          key: npm-${{ env.CACHE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: npm-${{ env.CACHE_VERSION }}-
+
+      - name: Install dependencies ⬇️
+        if: ${{ steps.cache-deps.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Code analysis ⌨️
+        run: npm run check
+
+      # - name: Test 🧪
+      #   run: npm test
+
+      - name: Build 👷‍♀️
+        run: npm run build
