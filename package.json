@@ -11,7 +11,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
-    "nanoid": "^3.3.8"
+    "nanoid": "^5.0.9"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.5",
